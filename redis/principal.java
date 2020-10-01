@@ -1,5 +1,7 @@
 import redis.clients.jedis.Jedis;
 
+import java.util.Scanner;
+
 public class principal {
     public static void main(String [] www){
         //Para la nube
@@ -18,8 +20,30 @@ public class principal {
         //String atendido = jedis.lpop("tickets");
         //System.out.println(atendido);
 
-        System.out.println("Bienvenid@ al banco de la fortuna\nSeleccione una opción:\n1) Cajas - CJ\n2) Plataforma - PL\n3) Créditos - CR\n4) Adulto mayor - AM");
-
-
+        System.out.println("Bienvenid@ al banco de la fortuna" +
+                "\nSeleccione una opción:" +
+                "\n1) Cajas - CJ" +
+                "\n2) Plataforma - PL" +
+                "\n3) Créditos - CR" +
+                "\n4) Adulto mayor - AM");
+        Scanner leer = new Scanner(System.in);
+        int opc = leer.nextInt();
+        switch (opc){
+            case 1:
+                jedis.rpush("tickets", "CJ - Israel");
+                break;
+            case 2:
+                jedis.rpush("tickets", "PL - Israel");
+                break;
+            case 3:
+                jedis.rpush("tickets", "CR - Israel");
+                break;
+            case 4:
+                jedis.rpush("tickets", "AM - Israel");
+                break;
+            default:
+                System.out.println("Opción incorrecta... :(");
+        }
+        System.out.println(jedis.lrange("tickets", 0, -1));
     }
 }
