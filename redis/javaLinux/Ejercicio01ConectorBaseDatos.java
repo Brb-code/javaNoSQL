@@ -1,3 +1,7 @@
+//Estudiante: Carlos O. Cusicanqui C.
+//Carrera: Ingenieria de Sistemas
+//Materia: Base de Datos 3
+
 import redis.clients.jedis.Jedis;
 
 public class Ejercicio01ConectorBaseDatos {
