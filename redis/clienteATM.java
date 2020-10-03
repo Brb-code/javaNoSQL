@@ -3,14 +3,25 @@ import redis.clients.jedis.Jedis;
 
 public class clienteATM {
     public static void main(String [] www){
-        //Librerias
-        Jedis jedis = new Jedis("redis-14505.c241.us-east-1-4.ec2.cloud.redislabs.com", 14505);
-        jedis.auth("dSSj6jmUk1FOanYEtwKZPy8CsSfOtZcG");
 
-        while(){
-
+        int externo = 1;
+        for (int i=0; i<externo; i++){
+            imprimirMenu();
+            if(opciones() != 0)
+                externo ++;
         }
 
+        /*
+        do {
+            imprimirMenu();
+        }while (opciones() != 0);
+        */
+        // Para borrar la clave
+        // jedis.del("tickets");
+
+
+    }
+    public static void imprimirMenu(){
         System.out.println("Bienvenid@ al banco de la fortuna" +
                 "\nSeleccione una opción:" +
                 "\n1) Cajas - CJ" +
@@ -18,15 +29,16 @@ public class clienteATM {
                 "\n3) Créditos - CR" +
                 "\n4) Adulto mayor - AM" +
                 "\n0) Salir");
-
-        // Para borrar la clave
-        // jedis.del("tickets");
-
+    }
+    public static int opciones(){
+        //Librerias
+        Jedis jedis = new Jedis("redis-14505.c241.us-east-1-4.ec2.cloud.redislabs.com", 14505);
+        jedis.auth("dSSj6jmUk1FOanYEtwKZPy8CsSfOtZcG");
         Scanner leer = new Scanner(System.in);
         int opc = leer.nextInt();
         switch (opc){
             case 1:
-                jedis.rpush("tickets", "CJ - Israel");
+                jedis.rpush("tickets", "CJ0023 - Israel");
                 break;
             case 2:
                 jedis.rpush("tickets", "PL - Israel");
@@ -43,7 +55,7 @@ public class clienteATM {
             default:
                 System.out.println("Opción incorrecta... :(");
         }
-
         System.out.println(jedis.lrange("tickets", 0, -1));
+        return opc;
     }
 }
