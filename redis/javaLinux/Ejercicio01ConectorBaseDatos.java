@@ -1,4 +1,4 @@
-//Estudiante: Carlos O. Cusicanqui C.
+//Estudiante: Carlos O. Cusicanqui C..
 //Carrera: Ingenieria de Sistemas
 //Materia: Base de Datos 3
 
@@ -13,6 +13,7 @@ public class Ejercicio01ConectorBaseDatos {
     }
 }
 
+//
 // https://github.com/Brb-code/javaNoSQL/blob/master/redis/principal.java
 
 // javac -cp ".:/home/usuario/Documents/TrabajosUbi/Work-Me/06Sem/BaseDatos03/jedis-2.9.0.jar" Ejercicio01ConectorBaseDatos.java
