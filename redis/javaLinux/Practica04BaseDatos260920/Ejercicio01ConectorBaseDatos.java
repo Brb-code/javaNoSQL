@@ -1,7 +1,3 @@
-//Estudiante: Carlos O. Cusicanqui C..
-//Carrera: Ingenieria de Sistemas
-//Materia: Base de Datos 3
-
 import redis.clients.jedis.Jedis;
 
 public class Ejercicio01ConectorBaseDatos {
@@ -13,7 +9,6 @@ public class Ejercicio01ConectorBaseDatos {
     }
 }
 
-//
 // https://github.com/Brb-code/javaNoSQL/blob/master/redis/principal.java
 
 // javac -cp ".:/home/usuario/Documents/TrabajosUbi/Work-Me/06Sem/BaseDatos03/jedis-2.9.0.jar" Ejercicio01ConectorBaseDatos.java
