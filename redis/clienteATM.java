@@ -2,6 +2,11 @@ import java.util.Scanner;
 import redis.clients.jedis.Jedis;
 
 public class clienteATM {
+    //Correlativos
+    public static int correlativoCJ = 1;
+    public static int correlativoPL = 1;
+    public static int correlativoCR = 1;
+    public static int correlativoAM = 1;
     public static void main(String [] www){
 
         int externo = 1;
@@ -35,19 +40,24 @@ public class clienteATM {
         Jedis jedis = new Jedis("redis-14505.c241.us-east-1-4.ec2.cloud.redislabs.com", 14505);
         jedis.auth("dSSj6jmUk1FOanYEtwKZPy8CsSfOtZcG");
         Scanner leer = new Scanner(System.in);
+
         int opc = leer.nextInt();
         switch (opc){
             case 1:
-                jedis.rpush("tickets", "CJ0023 - Israel");
+                jedis.rpush("tickets", "CJ" + (correlativoCJ) +" - Israel");
+                correlativoCJ= correlativoCJ+1;
                 break;
             case 2:
-                jedis.rpush("tickets", "PL - Israel");
+                jedis.rpush("tickets", "PL" + (correlativoPL) +" - Israel");
+                correlativoPL=correlativoPL+1;
                 break;
             case 3:
-                jedis.rpush("tickets", "CR - Israel");
+                jedis.rpush("tickets", "CR" + (correlativoCR) +" - Israel");
+                correlativoCR=correlativoCR+1;
                 break;
             case 4:
-                jedis.lpush("tickets", "AM - Israel");
+                jedis.lpush("tickets", "AM" + (correlativoAM) +" - Israel");
+                correlativoAM=correlativoAM+1;
                 break;
             case 0:
                 System.out.println("Gracias...");
