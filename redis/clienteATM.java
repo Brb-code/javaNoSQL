@@ -7,8 +7,10 @@ public class clienteATM {
     public static int correlativoPL = 1;
     public static int correlativoCR = 1;
     public static int correlativoAM = 1;
+    public static Jedis jedis = new Jedis("redis-14505.c241.us-east-1-4.ec2.cloud.redislabs.com", 14505);
     public static void main(String [] www){
-
+        jedis.auth("dSSj6jmUk1FOanYEtwKZPy8CsSfOtZcG");
+        //jedis.del("tickets");
         int externo = 1;
         for (int i=0; i<externo; i++){
             imprimirMenu();
@@ -36,9 +38,7 @@ public class clienteATM {
                 "\n0) Salir");
     }
     public static int opciones(){
-        //Librerias
-        Jedis jedis = new Jedis("redis-14505.c241.us-east-1-4.ec2.cloud.redislabs.com", 14505);
-        jedis.auth("dSSj6jmUk1FOanYEtwKZPy8CsSfOtZcG");
+
         Scanner leer = new Scanner(System.in);
 
         int opc = leer.nextInt();
