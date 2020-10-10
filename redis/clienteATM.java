@@ -11,10 +11,6 @@ public class clienteATM {
     public static void main(String [] www){
         jedis.auth("dSSj6jmUk1FOanYEtwKZPy8CsSfOtZcG");
         //jedis.del("tickets");
-        String valCJ = jedis.get("correlativoCJ");
-        if(valCJ == null) {
-            jedis.set("correlativoCJ", "1");
-        }
         int externo = 1;
         for (int i=0; i<externo; i++){
             imprimirMenu();
@@ -48,14 +44,24 @@ public class clienteATM {
         int opc = leer.nextInt();
         switch (opc){
             case 1:
-                /* Optimizar */
+                /* No Optimizado
                 String correlativoCJ = jedis.get("correlativoCJ");
                 int corrCJ = Integer.parseInt(correlativoCJ);
                 jedis.rpush("tickets", "CJ" + (corrCJ) +" - Israel");
                 //correlativoCJ= correlativoCJ+1;
                 jedis.set("correlativoCJ", (corrCJ + 1)+"");
                 break;
-                /* fin optimizar */
+                /* fin no optimizar */
+                /* Optimizado */
+                String correlativoCJ = jedis.get("correlativoCJ");
+                if(correlativoCJ == null) {
+                    jedis.set("correlativoCJ", "1");
+                    correlativoCJ = "1";
+                }
+                jedis.rpush("tickets", "CJ" + (correlativoCJ) +" - Israel");
+                jedis.incr("correlativoCJ");
+                break;
+                /* fin no optimizar */
             case 2:
                 jedis.rpush("tickets", "PL" + (correlativoPL) +" - Israel");
                 correlativoPL=correlativoPL+1;
