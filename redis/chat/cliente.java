@@ -1,6 +1,9 @@
 package chat;
 
+import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
+
 import redis.clients.jedis.Jedis;
 
 public class cliente {
@@ -10,6 +13,8 @@ public class cliente {
     public static void main (String [] www){
         //Para la autendicación en redis
         jedis.auth("dSSj6jmUk1FOanYEtwKZPy8CsSfOtZcG");
+        //Vaciar nicks o eliminar un documento
+        //jedis.del("nicks");
         //Inicia programa
         do {
             solicitaNick();
@@ -19,7 +24,6 @@ public class cliente {
         System.out.println("Hay "+cntConectados()+" personas en sala...");
         do {
             menu();
-
         } while(opciones()!=0);
         salir();
     }
@@ -51,9 +55,23 @@ public class cliente {
     }
     public static int opciones(){
         int opc = leer.nextInt();
+        switch (opc){
+            case 1:
+                personasenlinea();
+                break;
+        }
         return opc;
     }
+    public static void personasenlinea(){
+        Set<String> nicksenL = jedis.smembers("nicks");
+        Object [] k = nicksenL.toArray();
+        System.out.print("Se encuentran conetad@s: ");
+        for (int i=0; i<k.length; i++)
+            System.out.print("@"+k[i]+", ");
+    }
     public static void salir(){
+        jedis.srem("nicks", miNick);
         System.out.println("Gracias, vuelve pronto....");
+        miNick = null;
     }
 }
